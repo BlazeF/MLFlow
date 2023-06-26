@@ -1,0 +1,33 @@
+artifact_path: train/model
+flavors:
+  python_function:
+    artifacts:
+      model_path:
+        path: artifacts/sk_model
+        uri: C:\Users\HP\.mlflow\recipes\60821a419bc1774b71335e2611984069a457bc560f1b6719c9727baeed4aa269\steps\train\outputs\sk_model
+    cloudpickle_version: 2.0.0
+    code: code
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.9.12
+  sklearn:
+    code: code
+    pickled_model: artifacts\sk_model\model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.2.2
+mlflow_version: 2.4.1
+model_uuid: 628083ee52ab46dcbed58427fcf7c227
+run_id: f6d10727c18c4696b0a9e5de2e7fdf74
+signature:
+  inputs: '[{"type": "double", "name": "fixed acidity"}, {"type": "double", "name":
+    "volatile acidity"}, {"type": "double", "name": "citric acid"}, {"type": "double",
+    "name": "residual sugar"}, {"type": "double", "name": "chlorides"}, {"type": "double",
+    "name": "free sulfur dioxide"}, {"type": "double", "name": "total sulfur dioxide"},
+    {"type": "double", "name": "density"}, {"type": "double", "name": "pH"}, {"type":
+    "double", "name": "sulphates"}, {"type": "double", "name": "alcohol"}, {"type":
+    "long", "name": "quality"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+utc_time_created: '2023-06-25 07:53:05.842454'

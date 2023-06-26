@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Train@classification</title>
+        <style>
+            h1.title {
+            color: #4287f5;
+            }
+            h2.step-title {
+                color : #4287f5;
+            }
+            .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+            }
+
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+            .tabcontent {
+                display: block;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+
+            .content-hide {
+                display: none;
+            }
+
+            .content-active {
+                display: block;
+            }
+            h3.section-title {
+                color: #57a8de;
+            }
+            .dataset-container {
+                width: max;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .stacktrace-container {
+                max-height: 300px;
+                overflow: auto;
+                display: flex;
+                flex-direction: column-reverse;
+                white-space: pre-wrap;
+            }
+        </style>
+    </head>
+   <body>
+        <div class="tab">
+            <div class="button-container-qw9ebm">
+                
+                    <button id=0 class="tablink-qw9ebm">
+                        Model Performance
+                    </button>
+                
+                    <button id=1 class="tablink-qw9ebm">
+                        Data Profile (Predictions)
+                    </button>
+                
+                    <button id=2 class="tablink-qw9ebm">
+                        Model Architecture
+                    </button>
+                
+                    <button id=3 class="tablink-qw9ebm">
+                        Model Schema
+                    </button>
+                
+                    <button id=4 class="tablink-qw9ebm">
+                        Worst Predictions
+                    </button>
+                
+                    <button id=5 class="tablink-qw9ebm">
+                        Data Profile (Worst vs Train)
+                    </button>
+                
+                    <button id=6 class="tablink-qw9ebm">
+                        Leaderboard
+                    </button>
+                
+                    <button id=7 class="tablink-qw9ebm">
+                        Best Parameters 
+                    </button>
+                
+                    <button id=8 class="tablink-qw9ebm">
+                        Warning Logs
+                    </button>
+                
+                    <button id=9 class="tablink-qw9ebm">
+                        Run Summary
+                    </button>
+                
+            </div>
+        </div>
+        <div class="tabcontent">
+            
+                <div class="content-qw9ebm content-hide"><h3 class='section-title'>Summary Metrics (Validation)</h3><div style="max-height: 500px; overflow: scroll;"><style type="text/css">
+#T_b3e1f table {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_b3e1f  th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_b3e1f  td {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_b3e1f_row0_col0, #T_b3e1f_row0_col1, #T_b3e1f_row0_col2 {
+  font-weight: bold;
+}
+</style>
+<table id="T_b3e1f" style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <th id="T_b3e1f_level0_col0" class="col_heading level0 col0" >Metric</th>
+      <th id="T_b3e1f_level0_col1" class="col_heading level0 col1" >training</th>
+      <th id="T_b3e1f_level0_col2" class="col_heading level0 col2" >validation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_b3e1f_row0_col0" class="data row0 col0" >f1_score</td>
+      <td id="T_b3e1f_row0_col1" class="data row0 col1" >0.905645</td>
+      <td id="T_b3e1f_row0_col2" class="data row0 col2" >0.898246</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row1_col0" class="data row1 col0" >accuracy_score</td>
+      <td id="T_b3e1f_row1_col1" class="data row1 col1" >0.944931</td>
+      <td id="T_b3e1f_row1_col2" class="data row1 col2" >0.952066</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row2_col0" class="data row2 col0" >example_count</td>
+      <td id="T_b3e1f_row2_col1" class="data row2 col1" >4340</td>
+      <td id="T_b3e1f_row2_col2" class="data row2 col2" >605</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row3_col0" class="data row3 col0" >false_negatives</td>
+      <td id="T_b3e1f_row3_col1" class="data row3 col1" >155</td>
+      <td id="T_b3e1f_row3_col2" class="data row3 col2" >18</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row4_col0" class="data row4 col0" >false_positives</td>
+      <td id="T_b3e1f_row4_col1" class="data row4 col1" >84</td>
+      <td id="T_b3e1f_row4_col2" class="data row4 col2" >11</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row5_col0" class="data row5 col0" >precision_score</td>
+      <td id="T_b3e1f_row5_col1" class="data row5 col1" >0.931763</td>
+      <td id="T_b3e1f_row5_col2" class="data row5 col2" >0.920863</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row6_col0" class="data row6 col0" >recall_score</td>
+      <td id="T_b3e1f_row6_col1" class="data row6 col1" >0.880952</td>
+      <td id="T_b3e1f_row6_col2" class="data row6 col2" >0.876712</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row7_col0" class="data row7 col0" >score</td>
+      <td id="T_b3e1f_row7_col1" class="data row7 col1" >0.944931</td>
+      <td id="T_b3e1f_row7_col2" class="data row7 col2" >0.952066</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row8_col0" class="data row8 col0" >true_negatives</td>
+      <td id="T_b3e1f_row8_col1" class="data row8 col1" >2954</td>
+      <td id="T_b3e1f_row8_col2" class="data row8 col2" >448</td>
+    </tr>
+    <tr>
+      <td id="T_b3e1f_row9_col0" class="data row9 col0" >true_positives</td>
+      <td id="T_b3e1f_row9_col1" class="data row9 col1" >1147</td>
+      <td id="T_b3e1f_row9_col2" class="data row9 col2" >128</td>
+    </tr>
+  </tbody>
+</table>
+</div> </div>
+            
+                <div class="content-qw9ebm content-hide"><iframe srcdoc='
+        &lt;div style=&quot;background-color: white&quot;&gt;
+        &lt;script&gt;!function(){let t=window.URL;window.URL=function(n,e){return&quot;string&quot;==typeof e&amp;&amp;e.startsWith(&quot;blob:&quot;)?new URL(e):new t(n,e)}}();&lt;/script&gt;
+        &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.3.3/webcomponents-lite.js&quot;&gt;&lt;/script&gt;
+        &lt;link rel=&quot;import&quot; href=&quot;https://raw.githubusercontent.com/PAIR-code/facets/1.0.0/facets-dist/facets-jupyter.html&quot; &gt;
+        &lt;facets-overview id=&quot;facets&quot; proto-input=&quot;CuwKCitQcmVkaWN0aW9ucyBhbmQgRXJyb3JzIChWYWxpZGF0aW9uIERhdGFzZXQpEN0EGtUECgZ0YXJnZXQQABq0BAoOCN0EEAAYASABLQAAgD8Rh6pRS6bjzj8Z9lkiMkZo2z8gywMpAAAAAAAAAAAxAAAAAAAAAAA5AAAAAAAA8D9CpAIaGwkAAAAAAAAAABGamZmZmZm5PyHNzMzMzNh6QBobCZqZmZmZmbk/EZqZmZmZmck/ITQzMzMzMxhAGhsJmpmZmZmZyT8RNDMzMzMz0z8hNTMzMzMzGEAaGwk0MzMzMzPTPxGamZmZmZnZPyEyMzMzMzMYQBobCZqZmZmZmdk/EQAAAAAAAOA/ITIzMzMzMxhAGhsJAAAAAAAA4D8RMzMzMzMz4z8hMjMzMzMzGEAaGwk0MzMzMzPjPxFnZmZmZmbmPyEyMzMzMzMYQBobCWdmZmZmZuY/EZqZmZmZmek/ITIzMzMzMxhAGhsJmpmZmZmZ6T8RzczMzMzM7D8hMjMzMzMzGEAaGwnNzMzMzMzsPxEAAAAAAADwPyEzMzMzM8NfQCAAQsoBGhIJAAAAAAAAAAARAAAAAAAAAAAaEgkAAAAAAAAAABEAAAAAAAAAABoSCQAAAAAAAAAAEQAAAAAAAAAAGhIJAAAAAAAAAAARAAAAAAAAAAAaEgkAAAAAAAAAABEAAAAAAAAAABoSCQAAAAAAAAAAEQAAAAAAAAAAGhIJAAAAAAAAAAARAAAAAAAAAAAaEgkAAAAAAAAAABEAAAAAAADwPxoSCQAAAAAAAPA/EQAAAAAAAPA/GhIJAAAAAAAA8D8RAAAAAAAA8D8gATISCglkYXRhIHR5cGUaBWludDY0GtkECgpwcmVkaWN0aW9uEAAatAQKDgjdBBAAGAEgAS0AAIA/ETrjEwWEaM0/GUDkBd4D8to/INIDKQAAAAAAAAAAMQAAAAAAAAAAOQAAAAAAAPA/QqQCGhsJAAAAAAAAAAARmpmZmZmZuT8hzczMzMzYekAaGwmamZmZmZm5PxGamZmZmZnJPyE0MzMzMzMYQBobCZqZmZmZmck/ETQzMzMzM9M/ITUzMzMzMxhAGhsJNDMzMzMz0z8RmpmZmZmZ2T8hMjMzMzMzGEAaGwmamZmZmZnZPxEAAAAAAADgPyEyMzMzMzMYQBobCQAAAAAAAOA/ETMzMzMzM+M/ITIzMzMzMxhAGhsJNDMzMzMz4z8RZ2ZmZmZm5j8hMjMzMzMzGEAaGwlnZmZmZmbmPxGamZmZmZnpPyEyMzMzMzMYQBobCZqZmZmZmek/Ec3MzMzMzOw/ITIzMzMzMxhAGhsJzczMzMzM7D8RAAAAAAAA8D8hMzMzMzPDX0AgAELKARoSCQAAAAAAAAAAEQAAAAAAAAAAGhIJAAAAAAAAAAARAAAAAAAAAAAaEgkAAAAAAAAAABEAAAAAAAAAABoSCQAAAAAAAAAAEQAAAAAAAAAAGhIJAAAAAAAAAAARAAAAAAAAAAAaEgkAAAAAAAAAABEAAAAAAAAAABoSCQAAAAAAAAAAEQAAAAAAAAAAGhIJAAAAAAAAAAARAAAAAAAA8D8aEgkAAAAAAADwPxEAAAAAAADwPxoSCQAAAAAAAPA/EQAAAAAAAPA/IAEyEgoJZGF0YSB0eXBlGgVpbnQ2NBqFAQoFZXJyb3IQAiJnCg4I3QQQABgBIAEtAACAPxACGhASBUZhbHNlGQAAAAAAAIJAGg8SBFRydWUZAAAAAAAAPUAlAAAAACorChQIABAAIgVGYWxzZSkAAAAAAACCQAoTCAEQASIEVHJ1ZSkAAAAAAAA9QDIRCglkYXRhIHR5cGUaBGJvb2w=&quot; compare-mode=&quot;True&quot;&gt;&lt;/facets-overview&gt;
+        &lt;/div&gt;
+    ' width='100%' height='500' frameborder='0'></iframe></div>
+            
+                <div class="content-qw9ebm content-hide"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;pipeline&#x27;,
+                 Pipeline(steps=[(&#x27;identity&#x27;, FunctionTransformer())])),
+                (&#x27;sgdclassifier&#x27;,
+                 SGDClassifier(class_weight={0: 0.6638972809667674,
+                                             1: 2.025345622119816},
+                               random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;pipeline&#x27;,
+                 Pipeline(steps=[(&#x27;identity&#x27;, FunctionTransformer())])),
+                (&#x27;sgdclassifier&#x27;,
+                 SGDClassifier(class_weight={0: 0.6638972809667674,
+                                             1: 2.025345622119816},
+                               random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;identity&#x27;, FunctionTransformer())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">FunctionTransformer</label><div class="sk-toggleable__content"><pre>FunctionTransformer()</pre></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SGDClassifier</label><div class="sk-toggleable__content"><pre>SGDClassifier(class_weight={0: 0.6638972809667674, 1: 2.025345622119816},
+              random_state=42)</pre></div></div></div></div></div></div></div></div>
+            
+                <div class="content-qw9ebm content-hide"><div style="display: flex"><div style="margin: 5px"><h2>Inputs</h2><div style="max-height: 500px; overflow: scroll;"><style type="text/css">
+#T_007e7 table {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_007e7  th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_007e7  td {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+</style>
+<table id="T_007e7" style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <th id="T_007e7_level0_col0" class="col_heading level0 col0" >Name</th>
+      <th id="T_007e7_level0_col1" class="col_heading level0 col1" >Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_007e7_row0_col0" class="data row0 col0" >  fixed acidity</td>
+      <td id="T_007e7_row0_col1" class="data row0 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row1_col0" class="data row1 col0" >  volatile acidity</td>
+      <td id="T_007e7_row1_col1" class="data row1 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row2_col0" class="data row2 col0" >  citric acid</td>
+      <td id="T_007e7_row2_col1" class="data row2 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row3_col0" class="data row3 col0" >  residual sugar</td>
+      <td id="T_007e7_row3_col1" class="data row3 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row4_col0" class="data row4 col0" >  chlorides</td>
+      <td id="T_007e7_row4_col1" class="data row4 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row5_col0" class="data row5 col0" >  free sulfur dioxide</td>
+      <td id="T_007e7_row5_col1" class="data row5 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row6_col0" class="data row6 col0" >  total sulfur dioxide</td>
+      <td id="T_007e7_row6_col1" class="data row6 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row7_col0" class="data row7 col0" >  density</td>
+      <td id="T_007e7_row7_col1" class="data row7 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row8_col0" class="data row8 col0" >  pH</td>
+      <td id="T_007e7_row8_col1" class="data row8 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row9_col0" class="data row9 col0" >  sulphates</td>
+      <td id="T_007e7_row9_col1" class="data row9 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row10_col0" class="data row10 col0" >  alcohol</td>
+      <td id="T_007e7_row10_col1" class="data row10 col1" >double</td>
+    </tr>
+    <tr>
+      <td id="T_007e7_row11_col0" class="data row11 col0" >  quality</td>
+      <td id="T_007e7_row11_col1" class="data row11 col1" >long</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div style="margin: 5px"><h2>Outputs</h2><div style="max-height: 500px; overflow: scroll;"><style type="text/css">
+#T_78e9a table {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_78e9a  th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_78e9a  td {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+</style>
+<table id="T_78e9a" style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <th id="T_78e9a_level0_col0" class="col_heading level0 col0" >Name</th>
+      <th id="T_78e9a_level0_col1" class="col_heading level0 col1" >Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_78e9a_row0_col0" class="data row0 col0" >  -</td>
+      <td id="T_78e9a_row0_col1" class="data row0 col1" >Tensor('int64', (-1,))</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div></div>
+            
+                <div class="content-qw9ebm content-hide"><div style="max-height: 500px; overflow: scroll;"><style type="text/css">
+#T_340e2 table {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_340e2  th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_340e2  td {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+</style>
+<table id="T_340e2" style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <th id="T_340e2_level0_col0" class="col_heading level0 col0" >absolute_error</th>
+      <th id="T_340e2_level0_col1" class="col_heading level0 col1" >prediction</th>
+      <th id="T_340e2_level0_col2" class="col_heading level0 col2" >is_red</th>
+      <th id="T_340e2_level0_col3" class="col_heading level0 col3" >fixed acidity</th>
+      <th id="T_340e2_level0_col4" class="col_heading level0 col4" >volatile acidity</th>
+      <th id="T_340e2_level0_col5" class="col_heading level0 col5" >citric acid</th>
+      <th id="T_340e2_level0_col6" class="col_heading level0 col6" >residual sugar</th>
+      <th id="T_340e2_level0_col7" class="col_heading level0 col7" >chlorides</th>
+      <th id="T_340e2_level0_col8" class="col_heading level0 col8" >free sulfur dioxide</th>
+      <th id="T_340e2_level0_col9" class="col_heading level0 col9" >total sulfur dioxide</th>
+      <th id="T_340e2_level0_col10" class="col_heading level0 col10" >density</th>
+      <th id="T_340e2_level0_col11" class="col_heading level0 col11" >pH</th>
+      <th id="T_340e2_level0_col12" class="col_heading level0 col12" >sulphates</th>
+      <th id="T_340e2_level0_col13" class="col_heading level0 col13" >alcohol</th>
+      <th id="T_340e2_level0_col14" class="col_heading level0 col14" >quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_340e2_row0_col0" class="data row0 col0" >True</td>
+      <td id="T_340e2_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_340e2_row0_col2" class="data row0 col2" >1</td>
+      <td id="T_340e2_row0_col3" class="data row0 col3" >8.800000</td>
+      <td id="T_340e2_row0_col4" class="data row0 col4" >0.370000</td>
+      <td id="T_340e2_row0_col5" class="data row0 col5" >0.480000</td>
+      <td id="T_340e2_row0_col6" class="data row0 col6" >2.100000</td>
+      <td id="T_340e2_row0_col7" class="data row0 col7" >0.097000</td>
+      <td id="T_340e2_row0_col8" class="data row0 col8" >39.000000</td>
+      <td id="T_340e2_row0_col9" class="data row0 col9" >145.000000</td>
+      <td id="T_340e2_row0_col10" class="data row0 col10" >0.997500</td>
+      <td id="T_340e2_row0_col11" class="data row0 col11" >3.040000</td>
+      <td id="T_340e2_row0_col12" class="data row0 col12" >1.030000</td>
+      <td id="T_340e2_row0_col13" class="data row0 col13" >9.300000</td>
+      <td id="T_340e2_row0_col14" class="data row0 col14" >5</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row1_col0" class="data row1 col0" >True</td>
+      <td id="T_340e2_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_340e2_row1_col2" class="data row1 col2" >1</td>
+      <td id="T_340e2_row1_col3" class="data row1 col3" >8.900000</td>
+      <td id="T_340e2_row1_col4" class="data row1 col4" >0.620000</td>
+      <td id="T_340e2_row1_col5" class="data row1 col5" >0.180000</td>
+      <td id="T_340e2_row1_col6" class="data row1 col6" >3.800000</td>
+      <td id="T_340e2_row1_col7" class="data row1 col7" >0.176000</td>
+      <td id="T_340e2_row1_col8" class="data row1 col8" >52.000000</td>
+      <td id="T_340e2_row1_col9" class="data row1 col9" >145.000000</td>
+      <td id="T_340e2_row1_col10" class="data row1 col10" >0.998600</td>
+      <td id="T_340e2_row1_col11" class="data row1 col11" >3.160000</td>
+      <td id="T_340e2_row1_col12" class="data row1 col12" >0.880000</td>
+      <td id="T_340e2_row1_col13" class="data row1 col13" >9.200000</td>
+      <td id="T_340e2_row1_col14" class="data row1 col14" >5</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row2_col0" class="data row2 col0" >True</td>
+      <td id="T_340e2_row2_col1" class="data row2 col1" >1</td>
+      <td id="T_340e2_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_340e2_row2_col3" class="data row2 col3" >6.600000</td>
+      <td id="T_340e2_row2_col4" class="data row2 col4" >0.380000</td>
+      <td id="T_340e2_row2_col5" class="data row2 col5" >0.180000</td>
+      <td id="T_340e2_row2_col6" class="data row2 col6" >1.200000</td>
+      <td id="T_340e2_row2_col7" class="data row2 col7" >0.042000</td>
+      <td id="T_340e2_row2_col8" class="data row2 col8" >20.000000</td>
+      <td id="T_340e2_row2_col9" class="data row2 col9" >84.000000</td>
+      <td id="T_340e2_row2_col10" class="data row2 col10" >0.992700</td>
+      <td id="T_340e2_row2_col11" class="data row2 col11" >3.220000</td>
+      <td id="T_340e2_row2_col12" class="data row2 col12" >0.450000</td>
+      <td id="T_340e2_row2_col13" class="data row2 col13" >10.100000</td>
+      <td id="T_340e2_row2_col14" class="data row2 col14" >4</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row3_col0" class="data row3 col0" >True</td>
+      <td id="T_340e2_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_340e2_row3_col2" class="data row3 col2" >1</td>
+      <td id="T_340e2_row3_col3" class="data row3 col3" >4.900000</td>
+      <td id="T_340e2_row3_col4" class="data row3 col4" >0.420000</td>
+      <td id="T_340e2_row3_col5" class="data row3 col5" >0.000000</td>
+      <td id="T_340e2_row3_col6" class="data row3 col6" >2.100000</td>
+      <td id="T_340e2_row3_col7" class="data row3 col7" >0.048000</td>
+      <td id="T_340e2_row3_col8" class="data row3 col8" >16.000000</td>
+      <td id="T_340e2_row3_col9" class="data row3 col9" >42.000000</td>
+      <td id="T_340e2_row3_col10" class="data row3 col10" >0.991540</td>
+      <td id="T_340e2_row3_col11" class="data row3 col11" >3.710000</td>
+      <td id="T_340e2_row3_col12" class="data row3 col12" >0.740000</td>
+      <td id="T_340e2_row3_col13" class="data row3 col13" >14.000000</td>
+      <td id="T_340e2_row3_col14" class="data row3 col14" >7</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row4_col0" class="data row4 col0" >True</td>
+      <td id="T_340e2_row4_col1" class="data row4 col1" >1</td>
+      <td id="T_340e2_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_340e2_row4_col3" class="data row4 col3" >8.200000</td>
+      <td id="T_340e2_row4_col4" class="data row4 col4" >0.260000</td>
+      <td id="T_340e2_row4_col5" class="data row4 col5" >0.440000</td>
+      <td id="T_340e2_row4_col6" class="data row4 col6" >1.300000</td>
+      <td id="T_340e2_row4_col7" class="data row4 col7" >0.046000</td>
+      <td id="T_340e2_row4_col8" class="data row4 col8" >7.000000</td>
+      <td id="T_340e2_row4_col9" class="data row4 col9" >69.000000</td>
+      <td id="T_340e2_row4_col10" class="data row4 col10" >0.994400</td>
+      <td id="T_340e2_row4_col11" class="data row4 col11" >3.140000</td>
+      <td id="T_340e2_row4_col12" class="data row4 col12" >0.620000</td>
+      <td id="T_340e2_row4_col13" class="data row4 col13" >10.200000</td>
+      <td id="T_340e2_row4_col14" class="data row4 col14" >4</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row5_col0" class="data row5 col0" >True</td>
+      <td id="T_340e2_row5_col1" class="data row5 col1" >1</td>
+      <td id="T_340e2_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_340e2_row5_col3" class="data row5 col3" >8.600000</td>
+      <td id="T_340e2_row5_col4" class="data row5 col4" >0.270000</td>
+      <td id="T_340e2_row5_col5" class="data row5 col5" >0.460000</td>
+      <td id="T_340e2_row5_col6" class="data row5 col6" >6.100000</td>
+      <td id="T_340e2_row5_col7" class="data row5 col7" >0.032000</td>
+      <td id="T_340e2_row5_col8" class="data row5 col8" >13.000000</td>
+      <td id="T_340e2_row5_col9" class="data row5 col9" >41.000000</td>
+      <td id="T_340e2_row5_col10" class="data row5 col10" >0.993000</td>
+      <td id="T_340e2_row5_col11" class="data row5 col11" >2.890000</td>
+      <td id="T_340e2_row5_col12" class="data row5 col12" >0.340000</td>
+      <td id="T_340e2_row5_col13" class="data row5 col13" >10.900000</td>
+      <td id="T_340e2_row5_col14" class="data row5 col14" >5</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row6_col0" class="data row6 col0" >True</td>
+      <td id="T_340e2_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_340e2_row6_col2" class="data row6 col2" >1</td>
+      <td id="T_340e2_row6_col3" class="data row6 col3" >7.500000</td>
+      <td id="T_340e2_row6_col4" class="data row6 col4" >0.410000</td>
+      <td id="T_340e2_row6_col5" class="data row6 col5" >0.150000</td>
+      <td id="T_340e2_row6_col6" class="data row6 col6" >3.700000</td>
+      <td id="T_340e2_row6_col7" class="data row6 col7" >0.104000</td>
+      <td id="T_340e2_row6_col8" class="data row6 col8" >29.000000</td>
+      <td id="T_340e2_row6_col9" class="data row6 col9" >94.000000</td>
+      <td id="T_340e2_row6_col10" class="data row6 col10" >0.997860</td>
+      <td id="T_340e2_row6_col11" class="data row6 col11" >3.140000</td>
+      <td id="T_340e2_row6_col12" class="data row6 col12" >0.580000</td>
+      <td id="T_340e2_row6_col13" class="data row6 col13" >9.100000</td>
+      <td id="T_340e2_row6_col14" class="data row6 col14" >5</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row7_col0" class="data row7 col0" >True</td>
+      <td id="T_340e2_row7_col1" class="data row7 col1" >1</td>
+      <td id="T_340e2_row7_col2" class="data row7 col2" >0</td>
+      <td id="T_340e2_row7_col3" class="data row7 col3" >6.500000</td>
+      <td id="T_340e2_row7_col4" class="data row7 col4" >0.380000</td>
+      <td id="T_340e2_row7_col5" class="data row7 col5" >0.530000</td>
+      <td id="T_340e2_row7_col6" class="data row7 col6" >1.400000</td>
+      <td id="T_340e2_row7_col7" class="data row7 col7" >0.142000</td>
+      <td id="T_340e2_row7_col8" class="data row7 col8" >5.000000</td>
+      <td id="T_340e2_row7_col9" class="data row7 col9" >69.000000</td>
+      <td id="T_340e2_row7_col10" class="data row7 col10" >0.992600</td>
+      <td id="T_340e2_row7_col11" class="data row7 col11" >3.140000</td>
+      <td id="T_340e2_row7_col12" class="data row7 col12" >0.520000</td>
+      <td id="T_340e2_row7_col13" class="data row7 col13" >10.100000</td>
+      <td id="T_340e2_row7_col14" class="data row7 col14" >4</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row8_col0" class="data row8 col0" >True</td>
+      <td id="T_340e2_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_340e2_row8_col2" class="data row8 col2" >1</td>
+      <td id="T_340e2_row8_col3" class="data row8 col3" >8.500000</td>
+      <td id="T_340e2_row8_col4" class="data row8 col4" >0.280000</td>
+      <td id="T_340e2_row8_col5" class="data row8 col5" >0.560000</td>
+      <td id="T_340e2_row8_col6" class="data row8 col6" >1.800000</td>
+      <td id="T_340e2_row8_col7" class="data row8 col7" >0.092000</td>
+      <td id="T_340e2_row8_col8" class="data row8 col8" >35.000000</td>
+      <td id="T_340e2_row8_col9" class="data row8 col9" >103.000000</td>
+      <td id="T_340e2_row8_col10" class="data row8 col10" >0.996900</td>
+      <td id="T_340e2_row8_col11" class="data row8 col11" >3.300000</td>
+      <td id="T_340e2_row8_col12" class="data row8 col12" >0.750000</td>
+      <td id="T_340e2_row8_col13" class="data row8 col13" >10.500000</td>
+      <td id="T_340e2_row8_col14" class="data row8 col14" >7</td>
+    </tr>
+    <tr>
+      <td id="T_340e2_row9_col0" class="data row9 col0" >True</td>
+      <td id="T_340e2_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_340e2_row9_col2" class="data row9 col2" >1</td>
+      <td id="T_340e2_row9_col3" class="data row9 col3" >7.900000</td>
+      <td id="T_340e2_row9_col4" class="data row9 col4" >0.490000</td>
+      <td id="T_340e2_row9_col5" class="data row9 col5" >0.320000</td>
+      <td id="T_340e2_row9_col6" class="data row9 col6" >1.900000</td>
+      <td id="T_340e2_row9_col7" class="data row9 col7" >0.082000</td>
+      <td id="T_340e2_row9_col8" class="data row9 col8" >17.000000</td>
+      <td id="T_340e2_row9_col9" class="data row9 col9" >144.000000</td>
+      <td id="T_340e2_row9_col10" class="data row9 col10" >0.996800</td>
+      <td id="T_340e2_row9_col11" class="data row9 col11" >3.200000</td>
+      <td id="T_340e2_row9_col12" class="data row9 col12" >0.550000</td>
+      <td id="T_340e2_row9_col13" class="data row9 col13" >9.500000</td>
+      <td id="T_340e2_row9_col14" class="data row9 col14" >5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+            
+                <div class="content-qw9ebm content-hide"><iframe srcdoc='
+        &lt;div style=&quot;background-color: white&quot;&gt;
+        &lt;script&gt;!function(){let t=window.URL;window.URL=function(n,e){return&quot;string&quot;==typeof e&amp;&amp;e.startsWith(&quot;blob:&quot;)?new URL(e):new t(n,e)}}();&lt;/script&gt;
+        &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.3.3/webcomponents-lite.js&quot;&gt;&lt;/script&gt;
+        &lt;link rel=&quot;import&quot; href=&quot;https://raw.githubusercontent.com/PAIR-code/facets/1.0.0/facets-dist/facets-jupyter.html&quot; &gt;
+        &lt;facets-overview id=&quot;facets&quot; proto-input=&quot;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&quot; compare-mode=&quot;True&quot;&gt;&lt;/facets-overview&gt;
+        &lt;/div&gt;
+    ' width='100%' height='500' frameborder='0'></iframe></div>
+            
+                <div class="content-qw9ebm content-hide"><div style="max-height: 500px; overflow: scroll;"><style type="text/css">
+#T_9f2c2 table {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_9f2c2  th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+#T_9f2c2  td {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+}
+</style>
+<table id="T_9f2c2" style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_9f2c2_level0_col0" class="col_heading level0 col0" >Latest</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9f2c2_level0_row0" class="row_heading level0 row0" >Model Rank</th>
+      <td id="T_9f2c2_row0_col0" class="data row0 col0" >> 0</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row1" class="row_heading level0 row1" >f1_score</th>
+      <td id="T_9f2c2_row1_col0" class="data row1 col0" >0.898246</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row2" class="row_heading level0 row2" >accuracy_score</th>
+      <td id="T_9f2c2_row2_col0" class="data row2 col0" >0.952066</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row3" class="row_heading level0 row3" >false_negatives</th>
+      <td id="T_9f2c2_row3_col0" class="data row3 col0" >18</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row4" class="row_heading level0 row4" >false_positives</th>
+      <td id="T_9f2c2_row4_col0" class="data row4 col0" >11</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row5" class="row_heading level0 row5" >log_loss</th>
+      <td id="T_9f2c2_row5_col0" class="data row5 col0" >nan</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row6" class="row_heading level0 row6" >precision_score</th>
+      <td id="T_9f2c2_row6_col0" class="data row6 col0" >0.920863</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row7" class="row_heading level0 row7" >recall_score</th>
+      <td id="T_9f2c2_row7_col0" class="data row7 col0" >0.876712</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row8" class="row_heading level0 row8" >roc_auc</th>
+      <td id="T_9f2c2_row8_col0" class="data row8 col0" >nan</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row9" class="row_heading level0 row9" >true_negatives</th>
+      <td id="T_9f2c2_row9_col0" class="data row9 col0" >448</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row10" class="row_heading level0 row10" >true_positives</th>
+      <td id="T_9f2c2_row10_col0" class="data row10 col0" >128</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row11" class="row_heading level0 row11" >Run Time</th>
+      <td id="T_9f2c2_row11_col0" class="data row11 col0" >2023-06-25 13:22:48</td>
+    </tr>
+    <tr>
+      <th id="T_9f2c2_level0_row12" class="row_heading level0 row12" >Run ID</th>
+      <td id="T_9f2c2_row12_col0" class="data row12 col0" >f6d10727c18c4696b0a9e5de2e7fdf74</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+            
+                <div class="content-qw9ebm content-hide"><b>Best parameters:</b><br><pre># hardcoded parameters 
+class_weight: '{0: 0.6638972809667674, 1: 2.025345622119816}'
+
+# default parameters 
+alpha: '0.0001'
+average: 'False'
+early_stopping: 'False'
+epsilon: '0.1'
+eta0: '0.0'
+fit_intercept: 'True'
+l1_ratio: '0.15'
+learning_rate: optimal
+loss: hinge
+max_iter: '1000'
+n_iter_no_change: '5'
+n_jobs: None
+penalty: l2
+power_t: '0.5'
+random_state: '42'
+shuffle: 'True'
+tol: '0.001'
+validation_fraction: '0.1'
+verbose: '0'
+warm_start: 'False'
+
+</pre><br><br> </div>
+            
+                <div class="content-qw9ebm content-hide"><pre>2023/06/25 13:22:48 D:\Anaconda\lib\site-packages\mlflow\data\pandas_dataset.py:116: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:22:50 D:\Anaconda\lib\site-packages\mlflow\data\pandas_dataset.py:116: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:22:50 D:\Anaconda\lib\site-packages\mlflow\models\signature.py:144: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:22:54 D:\Anaconda\lib\site-packages\_distutils_hack\__init__.py:30: Setuptools is replacing distutils.
+2023/06/25 13:23:05 D:\Anaconda\lib\site-packages\mlflow\data\pandas_dataset.py:116: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:23:05 D:\Anaconda\lib\site-packages\mlflow\models\signature.py:144: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:23:11 D:\Anaconda\lib\site-packages\mlflow\data\pandas_dataset.py:116: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+2023/06/25 13:23:11 D:\Anaconda\lib\site-packages\mlflow\data\pandas_dataset.py:116: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+</pre></div>
+            
+                <div class="content-qw9ebm content-hide"><p><strong>MLflow Run ID:</strong> <code>f6d10727c18c4696b0a9e5de2e7fdf74</code></p> <p><strong>MLflow Model URI:</strong> <code>runs:/f6d10727c18c4696b0a9e5de2e7fdf74/train/model</code></p></div>
+            
+        </div>
+        <script>
+            function onclickTab(event) {
+                 const tablinks = document.getElementsByClassName("tablink-qw9ebm");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace("active", "");
+                }
+                event.target.classList.add("active");
+
+                const tabId = event.target.id;
+                const tabContents = document.getElementsByClassName("content-qw9ebm");
+                for (i = 0; i < tabContents.length; i++) {
+                    tabContents[i].className = tabContents[i].className.replace("content-active", "content-hide");
+                }
+                tabContents[tabId].classList.add("content-active");
+            }
+            (function() {
+                const buttonsContainer = document.getElementsByClassName("button-container-qw9ebm")[0]
+                buttonsContainer.addEventListener("click", onclickTab);
+
+                const tablinks = document.getElementsByClassName("tablink-qw9ebm");
+                tablinks[0].classList.add("active");
+                const tabContents = document.getElementsByClassName("content-qw9ebm");
+                tabContents[0].classList.add("content-active");
+            })()
+        </script>
+   </body>
+</html>
